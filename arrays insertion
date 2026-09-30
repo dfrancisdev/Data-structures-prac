@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main() {
+    // Array with capacity for 10 elements, but currently holding 5
+    int arr[10] = {10, 20, 30, 40, 50};
+    int size = 5; // Current number of elements
+
+    int element = 25; // Value to insert
+    int index = 2;   // Position where we want to insert (0-based)
+
+    // Step 1: Shift elements to the right to make space
+    // Start from the last element and move backward down to 'index'
+    for (int i = size - 1; i >= index; i--) {
+        arr[i + 1] = arr[i];
+    }
+
+    // Step 2: Insert the new element at the target index
+    arr[index] = element;
+    size++; // Increase size count
+
+    // Output the updated array
+    printf("Array after insertion:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
