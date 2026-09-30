@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};
+    int targetIndex = 2; // Index we want to change
+    int newValue = 99;   // New value to assign
+
+    printf("Original value at index %d: %d\n", targetIndex, arr[targetIndex]);
+
+    // Direct update operation in O(1) constant time
+    arr[targetIndex] = newValue;
+
+    printf("Updated value at index %d: %d\n\n", targetIndex, arr[targetIndex]);
+
+    // Display entire updated array
+    printf("Updated Array: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
