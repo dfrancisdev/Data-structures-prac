@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+#define MAX 5  // Maximum capacity of the stack
+
+int box[MAX];
+int top = -1;  // -1 indicates the stack is empty
+
+// Function to add an element to the stack
+void push(int x) {
+    if (top == MAX - 1) {      // Check for Stack Overflow
+        printf("Stack Overflow! Cannot push %d\n", x);
+    } else {
+        top++;
+        box[top] = x;          // Place element into stack[cite: 2]
+        printf("Value %d has been added\n", x); //[cite: 2]
+    }
+}
+
+// Completed Pop Function: removes and returns the top element
+int pop() {
+    if (top == -1) {           // Check for Stack Underflow[cite: 2]
+        printf("Stack is empty! Cannot pop\n"); //[cite: 2]
+        return -1;
+    } else {
+        int x = box[top];      // 1. Get current top element
+        top--;                 // 2. Decrement top pointer[cite: 1]
+        printf("%d has been removed\n", x); //[cite: 1]
+        return x;
+    }
+}
+
+// Function to traverse and display all stack elements
+void display() {
+    if (top == -1) {
+        printf("Stack is empty!\n");
+    } else {
+        printf("\nCurrent Stack (Top to Bottom):\n");
+        // Traverse from top index down to 0
+        for (int i = top; i >= 0; i--) {
+            printf("| %d |\n", box[i]);
+        }
+        printf("-----\n\n");
+    }
+}
+
+int main() {
+    // Pushing elements onto the stack
+    push(10); //[cite: 1]
+    push(20); //[cite: 1]
+    push(30); //[cite: 1]
+    push(40); //[cite: 1]
+    push(50); //[cite: 1]
+
+    // Display stack contents after pushing
+    display();
+
+    // Removing elements
+    pop();
+    pop();
+
+    // Display stack contents after popping twice
+    display();
+
+    return 0;
+}
