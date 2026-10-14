@@ -1,0 +1,90 @@
+#include <stdio.h>
+
+#define MAX 5  // Maximum capacity of the queue
+
+int queue[MAX];
+int front = -1;
+int rear = -1;
+
+// 1. Insertion (Enqueue Operation)
+void enqueue(int x) {
+    // Check for overflow (queue is full)
+    if (rear == MAX - 1) {
+        printf("Queue Overflow! Cannot insert %d, queue is full.\n", x);
+        return;
+    }
+    
+    // If adding the very first element, set front to 0
+    if (front == -1) {
+        front = 0;
+    }
+    
+    rear++;
+    queue[rear] = x;
+    printf("Inserted (Enqueue): %d\n", x);
+}
+
+// 2. Deletion (Dequeue Operation)
+int dequeue() {
+    // Check for underflow (queue is empty)
+    if (front == -1 || front > rear) {
+        printf("Queue Underflow! Queue is empty.\n");
+        return -1;
+    }
+    
+    int item = queue[front];
+    front++;
+    
+    // Reset pointers if the queue becomes completely empty
+    if (front > rear) {
+        front = -1;
+        rear = -1;
+    }
+    
+    printf("Deleted (Dequeue): %d\n", item);
+    return item;
+}
+
+// 3. Display (View Updated Queue State)
+void display() {
+    if (front == -1 || front > rear) {
+        printf("Current Queue: [ Empty ]\n");
+        return;
+    }
+    
+    printf("Current Queue: [ ");
+    for (int i = front; i <= rear; i++) {
+        printf("%d ", queue[i]);
+    }
+    printf("] (Front = %d, Rear = %d)\n", front, rear);
+}
+
+// Main Driver Program
+int main() {
+    printf("=== Queue Data Structure Demonstration ===\n\n");
+    
+    // Test Insertions
+    printf("--- Phase 1: Insertions ---\n");
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    display(); // Shows the updated queue state
+    
+    // Test Deletions
+    printf("\n--- Phase 2: Deletions ---\n");
+    dequeue();
+    display(); // Shows the updated queue state after deletion
+    
+    // Test More Insertions
+    printf("\n--- Phase 3: More Insertions ---\n");
+    enqueue(40);
+    enqueue(50);
+    display();
+    
+    // Test Overflow Protection
+    printf("\n--- Phase 4: Overflow Test ---\n");
+    enqueue(60); // Should trigger queue full since MAX is 5
+    display();
+
+    return 0;
+}
